@@ -12,21 +12,33 @@ code {
     monospace;
 }
 
-p,
-span,
-div {
+.body {
   font-family: "Spartan";
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.25;
+  line-height: 15px;
+}
+
+.body--reduced {
+  font-family: "Spartan";
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: -0.23;
+  line-height: 18px;
 }
 
 h1 {
   font-family: "Spartan";
   font-size: 32px;
+  font-weight: 700;
   letter-spacing: -1;
   line-height: 26px;
 }
 
 h2 {
   font-family: "Spartan";
+  font-weight: 700;
   font-size: 20px;
   letter-spacing: -0.63;
   line-height: 22px;
@@ -34,6 +46,7 @@ h2 {
 
 h3 {
   font-family: "Spartan";
+  font-weight: 700;
   font-size: 16px;
   letter-spacing: -0.8;
   line-height: 24px;
@@ -41,6 +54,7 @@ h3 {
 
 h4 {
   font-family: "Spartan";
+  font-weight: 700;
   font-size: 12px;
   letter-spacing: -0.25;
   line-height: 15px;
