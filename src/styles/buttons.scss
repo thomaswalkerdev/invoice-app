@@ -1,0 +1,60 @@
+@import "globals";
+
+.btn {
+  padding: 8px;
+  border-radius: 32px;
+  color: white;
+  border: none;
+  font-family: "Spartan";
+  font-size: 18px;
+
+  &--small {
+    height: 36px;
+    min-width: 80px;
+    font-weight: 300;
+  }
+
+  &--medium {
+    height: 48px;
+    min-width: 100px;
+    font-weight: 500;
+  }
+
+  &--large {
+    height: 64px;
+    min-width: 120px;
+    font-weight: 700;
+  }
+
+  &__add {
+    &--dark {
+    }
+  }
+
+  &__edit {
+    &--dark {
+    }
+  }
+
+  &__delete {
+    &--dark {
+    }
+  }
+
+  &__icon {
+    &--dark {
+    }
+  }
+
+  &__primary-action {
+    background-color: $colour1;
+  }
+
+  &__secondary-action {
+    background-color: $colour4;
+    color: $colour7;
+    &--dark {
+      color: white;
+    }
+  }
+}
