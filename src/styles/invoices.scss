@@ -1,0 +1,25 @@
+@import "./globals.scss";
+
+.invoices__wrapper {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.invoices__actions-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.invoices__list-wrapper {
+}
+
+.invoices__list-entry {
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+  margin: 20px 0px;
+  padding: 20px 10px;
+  background-color: $colour1;
+  border-radius: 25px;
+}
