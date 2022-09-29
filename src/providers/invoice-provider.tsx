@@ -1,8 +1,9 @@
-import * as React from "react";
+import React from "react";
 import { InvoiceActions } from "../actions/invoice.actions";
 import { Invoice } from "../models/invoice.model";
+import { RemoveObjInArr, UpdateObjInArr } from "../utils/provider.utils";
 
-type Action = { type: InvoiceActions };
+type Action = { type: InvoiceActions; payload: any };
 type Dispatch = (action: Action) => void;
 type State = { count: number; invoices: Invoice[] };
 type InvoiceProviderProps = { children: React.ReactNode };
@@ -14,16 +15,19 @@ const InvoiceContext = React.createContext<
 function invoiceReducer(state: State, action: Action) {
   switch (action.type) {
     case InvoiceActions.CreateInvoice: {
-      return { ...state, count: state.count + 1 };
+      return { ...state, invoices: [...state.invoices, action.payload] };
     }
     case InvoiceActions.UpdateInvoice: {
-      return { ...state, count: state.count - 1 };
-    }
-    case InvoiceActions.UpdateInvoiceStatus: {
-      return { ...state, count: state.count - 1 };
+      return {
+        ...state,
+        invoices: UpdateObjInArr(state.invoices, action.payload, "id"),
+      };
     }
     case InvoiceActions.DeleteInvoice: {
-      return { ...state, count: state.count - 1 };
+      return {
+        ...state,
+        invoices: RemoveObjInArr(state.invoices, action.payload, "id"),
+      };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
