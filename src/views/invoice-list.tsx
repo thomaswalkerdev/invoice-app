@@ -15,10 +15,6 @@ export function InvoiceList({ ...props }) {
           return <InvoiceEntry key={i} />;
         })}
       </div>
-      <div>{state?.count}</div>
-      <button onClick={() => dispatch({ type: InvoiceActions.CreateInvoice })}>
-        Test Button
-      </button>
     </>
   );
 }
