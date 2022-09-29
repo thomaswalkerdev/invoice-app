@@ -31,7 +31,7 @@ const SmallIcon = () => {
 export interface IButtonProps {
   children?: any;
   type?: any;
-  onClick?: () => {};
+  onClick?: () => void;
   buttonStyle: ButtonStyleEnum;
   buttonSize: ButtonSizeEnum;
 }

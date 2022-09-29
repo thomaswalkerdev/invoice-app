@@ -1,7 +1,25 @@
 .side-container {
-  width: 800px;
+  width: 0px;
   position: absolute;
   left: 0px;
   top: 0px;
   height: 100vh;
+  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear; /* Safari 和 Chrome */
+  transition-property: width;
+  background-color: white;
+}
+
+.side-container--expanded {
+  width: 800px;
+  position: absolute;
+  z-index: 100;
+  left: 0px;
+  top: 0px;
+  height: 100vh;
+  transition: all 0.3s linear;
+  transition-property: width;
+  background-color: white;
+
+  -webkit-transition: all 0.3s linear; /* Safari 和 Chrome */
 }
