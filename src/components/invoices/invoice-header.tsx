@@ -1,8 +1,9 @@
 import React from "react";
-import ButtonSizeEnum from "../../enums/button-size.enum.ts";
-import ButtonStyleEnum from "../../enums/button-style.enum.ts";
-import Button from "../buttons/button.tsx";
+import ButtonSizeEnum from "../../enums/button-size.enum";
+import ButtonStyleEnum from "../../enums/button-style.enum";
+import Button from "../buttons/button";
 import "../../styles/invoices.scss";
+
 export function InvoiceHeader() {
   return (
     <div className="invoices__wrapper">

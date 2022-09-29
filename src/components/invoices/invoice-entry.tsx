@@ -1,5 +1,5 @@
 import React from "react";
-import { InvoiceStatus } from "./invoice-status.tsx";
+import { InvoiceStatus } from "./invoice-status";
 export function InvoiceEntry() {
   return (
     <div className="invoices__list-entry">

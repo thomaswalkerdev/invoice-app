@@ -1,3 +1,4 @@
+import { InvoiceStatus } from "../enums/invoice-status.enum";
 import { PaymentTerms } from "../enums/payment-terms.enum";
 import { Address } from "./address.model";
 import { Client } from "./client.model";
@@ -11,4 +12,5 @@ export class Invoice {
   paymentTerms: PaymentTerms;
   productDescription: string;
   itemList: Item[];
+  status: InvoiceStatus;
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonSizeEnum from "../../enums/button-size.enum.ts";
-import ButtonStyleEnum from "../../enums/button-style.enum.ts";
+import ButtonSizeEnum from "../../enums/button-size.enum";
+import ButtonStyleEnum from "../../enums/button-style.enum";
 import "../../styles/buttons.scss";
 
 export const Button = (props: IButtonProps) => {

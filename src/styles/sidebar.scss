@@ -1,8 +1,16 @@
+@import "./globals.scss";
+
 .sidebar {
   height: 100vh;
   position: absolute;
   top: 0px;
   left: 0px;
-  border: 1px solid black;
-  width: 250px;
+  width: 100px;
+  background-color: $colour4;
+}
+
+.sidebar__top-icon {
+  height: 100px;
+  width: 100%;
+  background-color: $colour1;
 }
