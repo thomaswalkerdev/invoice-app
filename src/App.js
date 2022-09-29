@@ -7,24 +7,12 @@ import { InvoiceProvider } from "./providers/invoice-provider";
 import { ThemeProvider } from "./providers/theme-provider";
 
 function App() {
-  // const [createInvoiceToggle, setCreateInvoice] = useState(false);
-  const [count, setCount] = useState(false);
-
   return (
     <ThemeProvider>
       <InvoiceProvider>
         <Sidebar />
         <div className="App">
           <InvoiceList value={InvoiceProvider.value} />
-          <button
-            onClick={() => {
-              setCount(!count);
-              console.log("on click", count);
-            }}
-          >
-            Toggle
-          </button>
-          open: {count}
         </div>
       </InvoiceProvider>
     </ThemeProvider>
