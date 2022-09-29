@@ -8,9 +8,10 @@ function SideContainer({
   children: any;
   open: boolean;
 }) {
+  let content = open ? children : null;
   return (
     <div className={open ? "side-container--expanded" : "side-container"}>
-      {children}
+      {content}
     </div>
   );
 }
