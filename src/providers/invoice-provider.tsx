@@ -14,7 +14,6 @@ const InvoiceContext = React.createContext<
 function invoiceReducer(state: State, action: Action) {
   switch (action.type) {
     case InvoiceActions.CreateInvoice: {
-      console.log("running action");
       return { ...state, count: state.count + 1 };
     }
     case InvoiceActions.UpdateInvoice: {
@@ -46,7 +45,7 @@ function InvoiceProvider({ children }: InvoiceProviderProps) {
 function useInvoice() {
   const context = React.useContext(InvoiceContext);
   if (context === undefined) {
-    throw new Error("useCount must be used within a CountProvider");
+    throw new Error("useInvoice must be used within a InvoiceProvider");
   }
   return context;
 }

@@ -35,7 +35,7 @@ function ThemeProvider({ children }: ThemeProviderProps) {
 function useTheme() {
   const context = React.useContext(ThemeContext);
   if (context === undefined) {
-    throw new Error("useCount must be used within a CountProvider");
+    throw new Error("useTheme must be used within a ThemeProvider");
   }
   return context;
 }
