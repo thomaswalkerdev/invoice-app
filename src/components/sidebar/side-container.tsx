@@ -1,4 +1,3 @@
-import React from "react";
 import "../../styles/side-container.scss";
 
 function SideContainer({
@@ -9,6 +8,7 @@ function SideContainer({
   open: boolean;
 }) {
   let content = open ? children : null;
+
   return (
     <div className={open ? "side-container--expanded" : "side-container"}>
       {content}
