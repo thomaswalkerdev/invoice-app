@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./styles/temp-default.scss";
 import "./styles/base.scss";
 import InvoiceList from "./views/invoice-list";

@@ -1,6 +1,11 @@
 import React from "react";
-export const InvoiceStatus = () => {
-  return <span>Green</span>;
+
+export const InvoiceStatus = (props: IInvoiceStatusProps) => {
+  return <span>{props?.status}</span>;
 };
 
 export default InvoiceStatus;
+
+export interface IInvoiceStatusProps {
+  status: string;
+}

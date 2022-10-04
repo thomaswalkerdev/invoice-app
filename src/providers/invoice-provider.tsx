@@ -1,11 +1,16 @@
 import React from "react";
 import { InvoiceActions } from "../actions/invoice.actions";
 import { Invoice } from "../models/invoice.model";
+import { InvoiceService } from "../services/invoice.service";
 import { RemoveObjInArr, UpdateObjInArr } from "../utils/provider.utils";
+import {
+  generateRandomUppercaseCharacters,
+  generateRandomNumberString,
+} from "../utils/random.utils";
 
 type Action = { type: InvoiceActions; payload: any };
 type Dispatch = (action: Action) => void;
-type State = { count: number; invoices: Invoice[] };
+type State = Invoice[];
 type InvoiceProviderProps = { children: React.ReactNode };
 
 const InvoiceContext = React.createContext<
@@ -16,19 +21,14 @@ function invoiceReducer(state: State, action: Action) {
   switch (action.type) {
     case InvoiceActions.CreateInvoice: {
       action.payload.id = generateId();
-      return { ...state, invoices: [...state.invoices, action.payload] };
+      return [...state, action.payload];
     }
     case InvoiceActions.UpdateInvoice: {
-      return {
-        ...state,
-        invoices: UpdateObjInArr(state.invoices, action.payload, "id"),
-      };
+      console.log("action", action.payload);
+      return UpdateObjInArr(state, action.payload, "id");
     }
     case InvoiceActions.DeleteInvoice: {
-      return {
-        ...state,
-        invoices: RemoveObjInArr(state.invoices, action.payload, "id"),
-      };
+      return RemoveObjInArr(state, action.payload, "id");
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -37,10 +37,11 @@ function invoiceReducer(state: State, action: Action) {
 }
 
 function InvoiceProvider({ children }: InvoiceProviderProps) {
-  const [state, dispatch] = React.useReducer(invoiceReducer, {
-    count: 0,
-    invoices: [],
-  });
+  let invoiceService = new InvoiceService();
+  const [state, dispatch] = React.useReducer(
+    invoiceReducer,
+    invoiceService.loadInvoices()
+  );
   const value = { state, dispatch };
   return (
     <InvoiceContext.Provider value={value}>{children}</InvoiceContext.Provider>
@@ -56,7 +57,7 @@ function useInvoice() {
 }
 
 function generateId() {
-  return "xxx01";
+  return generateRandomUppercaseCharacters(2) + generateRandomNumberString(4);
 }
 
 export { InvoiceProvider, useInvoice };

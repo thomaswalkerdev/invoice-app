@@ -1,16 +1,17 @@
-import { InvoiceStatus } from "../enums/invoice-status.enum";
-import { PaymentTerms } from "../enums/payment-terms.enum";
 import { Address } from "./address.model";
-import { Client } from "./client.model";
 import { Item } from "./item.model";
 
 export class Invoice {
-  id: string;
-  address: Address;
-  client: Client;
-  invoiceDate: string;
-  paymentTerms: PaymentTerms;
-  productDescription: string;
-  itemList: Item[];
-  status: InvoiceStatus;
+  id?: string;
+  createdAt?: string;
+  paymentDue?: string;
+  senderAddress: Address = new Address();
+  clientAddress: Address = new Address();
+  clientName?: string;
+  clientEmail?: string;
+  paymentTerms?: number;
+  description?: string;
+  items?: Item[];
+  total?: number;
+  status: string = "Draft";
 }
