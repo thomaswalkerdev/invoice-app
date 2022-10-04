@@ -15,6 +15,7 @@ const InvoiceContext = React.createContext<
 function invoiceReducer(state: State, action: Action) {
   switch (action.type) {
     case InvoiceActions.CreateInvoice: {
+      action.payload.id = generateId();
       return { ...state, invoices: [...state.invoices, action.payload] };
     }
     case InvoiceActions.UpdateInvoice: {
@@ -52,6 +53,10 @@ function useInvoice() {
     throw new Error("useInvoice must be used within a InvoiceProvider");
   }
   return context;
+}
+
+function generateId() {
+  return "xxx01";
 }
 
 export { InvoiceProvider, useInvoice };

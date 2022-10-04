@@ -8,7 +8,7 @@ function CreateInvoice() {
     <div className="create-invoice">
       <h1>New Invoice</h1>
       <h4>Bill From</h4>
-      <TextField label="Street Address" />
+      {/* <TextField label="Street Address" />
       <TextField label="City" />
       <TextField label="Post Code" />
       <TextField label="Country" />
@@ -21,7 +21,7 @@ function CreateInvoice() {
       <TextField label="Country" />
       <DatePickerField />
       {/* <DropdownField></DropdownField> */}
-      <TextField label="Product Description" />
+      {/* <TextField label="Product Description" /> */}
       {/* <ItemList /> */}
     </div>
   );
