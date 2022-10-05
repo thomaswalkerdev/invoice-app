@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Invoice } from "../../models/invoice.model";
 import CreateEditInvoice from "../../views/create-edit-invoice";
 import SideContainer from "../sidebar/side-container";
@@ -13,7 +14,12 @@ export function InvoiceEntry(props: IInvoiceEntryProps) {
       <span>{props?.invoice?.clientName}</span>
       <span>{props?.invoice?.total}</span>
       <InvoiceStatus status={props?.invoice?.status} />
-      <button onClick={() => toggleEditInvoice(!editInvoice)}>Carret</button>
+      <Link
+        to={props.invoice.id ?? ""}
+        // onClick={() => toggleEditInvoice(!editInvoice)}
+      >
+        Carret
+      </Link>
       <SideContainer open={editInvoice}>
         <CreateEditInvoice
           close={() => toggleEditInvoice(!editInvoice)}

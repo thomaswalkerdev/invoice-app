@@ -9,7 +9,11 @@ export function InvoiceList({ ...props }) {
       <InvoiceHeader />
       <div className="invoices__list-wrapper">
         {state.map((invoice, i) => {
-          return <InvoiceEntry key={i} invoice={invoice} />;
+          return (
+            <div key={i}>
+              <InvoiceEntry invoice={invoice} />
+            </div>
+          );
         })}
       </div>
     </>

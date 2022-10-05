@@ -1,7 +1,8 @@
 function TextField(props: ITextFieldProps) {
+  const label = props?.label ? <label>{props?.label}</label> : null;
   return (
     <div>
-      <label>{props?.label}</label>
+      {label}
       <input
         type="text"
         value={props?.defaultValue}
@@ -15,6 +16,6 @@ export default TextField;
 
 export interface ITextFieldProps {
   defaultValue?: string;
-  label: string;
+  label?: string;
   onChange: (value: string) => void;
 }

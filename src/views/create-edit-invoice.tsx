@@ -1,23 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InvoiceActions } from "../actions/invoice.actions";
+import DatePickerField from "../components/forms/date-picker-field";
 import DropdownField from "../components/forms/dropdown-field";
+import ItemList from "../components/forms/item-list";
 import TextField from "../components/forms/text-field";
 import { Invoice } from "../models/invoice.model";
 import { useInvoice } from "../providers/invoice-provider";
 import "../styles/create-invoice.scss";
+import { checkAllPropertiesAreNotNull } from "../utils/object.utils";
 
 function CreateEditInvoice(props: ICreateEditInvoiceProps) {
   const { state, dispatch } = useInvoice();
+
   let invoice = props?.invoiceId
     ? state.find((invoice) => invoice.id === props?.invoiceId)
     : new Invoice();
-  const [formValues, updateForm] = useState(invoice ?? new Invoice());
 
-  const title = props.invoiceId ? (
-    <h1>Edit Invoice</h1>
-  ) : (
-    <h1>Create Invoice</h1>
-  );
+  const [formValues, updateForm] = useState(invoice ?? new Invoice());
+  const [validForm, updateFormValid] = useState(false);
   const paymentTermOptions = [
     { label: "Next Day", value: 1 },
     { label: "Week", value: 7 },
@@ -30,10 +30,22 @@ function CreateEditInvoice(props: ICreateEditInvoiceProps) {
     return date.toString();
   }
 
+  useEffect(() => {
+    function validateFormFields() {
+      updateFormValid(true);
+      checkAllPropertiesAreNotNull(formValues, () => {
+        updateFormValid(false);
+      });
+    }
+
+    validateFormFields();
+  }, [formValues]);
+
   const submitOptions = props.invoiceId ? (
     <div>
       <button onClick={props?.close}>Cancel</button>
       <button
+        disabled={!validForm}
         onClick={() => {
           updateForm({
             ...formValues,
@@ -64,6 +76,7 @@ function CreateEditInvoice(props: ICreateEditInvoiceProps) {
         Save as Draft
       </button>
       <button
+        disabled={!validForm}
         onClick={() => {
           updateForm({
             ...formValues,
@@ -85,7 +98,7 @@ function CreateEditInvoice(props: ICreateEditInvoiceProps) {
 
   return (
     <div className="create-invoice">
-      {title}
+      {props.invoiceId ? <h1>Edit Invoice</h1> : <h1>Create Invoice</h1>}
       <h4>Bill From</h4>
       <TextField
         label="Street"
@@ -200,15 +213,10 @@ function CreateEditInvoice(props: ICreateEditInvoiceProps) {
           })
         }
       />
-      {/* <DatePickerField
+      <DatePickerField
         label="Invoice Date"
-        onChange={(value) =>
-          updateForm({
-            ...formValues,
-            createdAt: value,
-          })
-        }
-      /> */}
+        defaultValue={formValues?.createdAt ?? new Date().toString()}
+      />
       <DropdownField
         label="Payment Terms"
         options={paymentTermOptions}
@@ -230,7 +238,10 @@ function CreateEditInvoice(props: ICreateEditInvoiceProps) {
           })
         }
       />
-      {/* <ItemList /> */}
+      <ItemList
+        items={formValues?.items}
+        onItemsUpdated={(items) => updateForm({ ...formValues, items: items })}
+      />
       {submitOptions}
     </div>
   );
