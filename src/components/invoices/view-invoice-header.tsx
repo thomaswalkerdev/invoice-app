@@ -5,24 +5,39 @@ import { Invoice } from "../../models/invoice.model";
 import CreateEditInvoice from "../../views/create-edit-invoice";
 import Button from "../buttons/button";
 import SideContainer from "../sidebar/side-container";
+import "../../styles/view-invoice.scss";
 
 function ViewInvoiceHeader(props: IViewInvoiceHeaderProps) {
   const [editInvoice, toggleEditInvoice] = useState(false);
 
   return (
     <>
-      <div>
-        <span>Status: {props?.invoice?.status}</span>
-        <div>
+      <div className="view-invoice__header">
+        <span className="view-invoice__status">
+          Status: {props?.invoice?.status}
+        </span>
+        <div className="view-invoice__buttons">
           <Button
             buttonSize={ButtonSizeEnum.Medium}
-            buttonStyle={ButtonStyleEnum.Icon}
+            buttonStyle={ButtonStyleEnum.Edit}
             onClick={() => toggleEditInvoice(!editInvoice)}
           >
             Edit
           </Button>
-          <button>Delete</button>
-          <button>Mark as Paid</button>
+          <Button
+            buttonSize={ButtonSizeEnum.Medium}
+            buttonStyle={ButtonStyleEnum.Delete}
+            // onClick={() => toggleEditInvoice(!editInvoice)}
+          >
+            Delete
+          </Button>
+          <Button
+            buttonSize={ButtonSizeEnum.Medium}
+            buttonStyle={ButtonStyleEnum.PrimaryAction}
+            // onClick={() => toggleEditInvoice(!editInvoice)}
+          >
+            Mark as Paid
+          </Button>
         </div>
       </div>
       <SideContainer open={editInvoice}>

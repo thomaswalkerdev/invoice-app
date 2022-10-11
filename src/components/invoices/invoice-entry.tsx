@@ -9,17 +9,19 @@ export function InvoiceEntry(props: IInvoiceEntryProps) {
 
   return (
     <div className="invoices__list-entry">
-      <span>{props?.invoice?.id}</span>
-      <span>{props?.invoice?.createdAt}</span>
+      <span>
+        #<strong>{props?.invoice?.id}</strong>
+      </span>
+      <span>Due {props?.invoice?.createdAt}</span>
       <span>{props?.invoice?.clientName}</span>
-      <span>{props?.invoice?.total}</span>
-      <InvoiceStatus status={props?.invoice?.status} />
-      <Link
-        to={props.invoice.id ?? ""}
-        // onClick={() => toggleEditInvoice(!editInvoice)}
-      >
-        Carret
-      </Link>
+      <span>
+        <strong>£{props?.invoice?.total}</strong>
+      </span>
+      <InvoiceStatus
+        status={props?.invoice?.status}
+        invoiceId={props?.invoice?.id ?? ""}
+      />
+
       <SideContainer open={editInvoice}>
         <CreateEditInvoice
           close={() => toggleEditInvoice(!editInvoice)}

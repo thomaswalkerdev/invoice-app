@@ -21,11 +21,11 @@ export const Button = (props: IButtonProps) => {
 };
 
 const CircleIcon = () => {
-  return <div>Y</div>;
+  return <span className="btn__icon-wrapper">+</span>;
 };
 
 const SmallIcon = () => {
-  return <div>X</div>;
+  return <span className="btn__icon-wrapper">X</span>;
 };
 
 export interface IButtonProps {

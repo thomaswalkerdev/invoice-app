@@ -1,8 +1,10 @@
 import { Item } from "../../models/item.model";
+import "../../styles/view-invoice.scss";
+import "../../styles/forms.scss";
 
 function ViewInvoiceItems(props: IViewInvoiceItemsProps) {
   return (
-    <div>
+    <div className="view-invoice__items">
       <table>
         <tr>
           <th>Item Name</th>
@@ -12,7 +14,7 @@ function ViewInvoiceItems(props: IViewInvoiceItemsProps) {
         </tr>
         {props?.items.map((item, index) => {
           return (
-            <tr>
+            <tr className="form__group">
               <td>{item?.name}</td>
               <td>{item?.quantity}</td>
               <td>{item?.price}</td>

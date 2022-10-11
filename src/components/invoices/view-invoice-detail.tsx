@@ -1,28 +1,39 @@
 import { Invoice } from "../../models/invoice.model";
 import ViewInvoiceItems from "./view-invoice-items";
+import "../../styles/view-invoice.scss";
 
 function ViewInvoiceDetail(props: IViewInvoiceDetailProps) {
   let invoice = props?.invoice ?? new Invoice();
   return (
-    <div>
-      <div>
-        <span>#{invoice.id}</span>
-        <span>{invoice.description}</span>
-        <span>{invoice?.senderAddress?.street}</span>
-        <span>{invoice.senderAddress?.city}</span>
-        <span>{invoice.senderAddress?.postCode}</span>
-        <span>{invoice.senderAddress?.country}</span>
+    <div className="view-invoice__body">
+      <div className="view-invoice__row">
+        <div>
+          <p>#{invoice.id}</p>
+          <p>{invoice.description}</p>
+        </div>
+        <div>
+          <p>{invoice?.senderAddress?.street}</p>
+          <p>{invoice.senderAddress?.city}</p>
+          <p>{invoice.senderAddress?.postCode}</p>
+          <p>{invoice.senderAddress?.country}</p>
+        </div>
       </div>
 
-      <div>
-        <span>Invoice Date: {invoice?.createdAt}</span>
-        <span>Bill to: {invoice?.clientName}</span>
-        <span>Sent to: {invoice?.clientEmail}</span>
-        <span>Payment Due: {invoice?.paymentDue}</span>
-        <span>{invoice?.clientAddress?.street}</span>
-        <span>{invoice.clientAddress?.city}</span>
-        <span>{invoice.clientAddress?.postCode}</span>
-        <span>{invoice.clientAddress?.country}</span>
+      <div className="view-invoice__row">
+        <div>
+          <p>Invoice Date: {invoice?.createdAt}</p>
+          <p>Payment Due: {invoice?.paymentDue}</p>
+        </div>
+        <div>
+          <p>Bill to: {invoice?.clientName}</p>
+          <p>{invoice?.clientAddress?.street}</p>
+          <p>{invoice.clientAddress?.city}</p>
+          <p>{invoice.clientAddress?.postCode}</p>
+          <p>{invoice.clientAddress?.country}</p>
+        </div>
+        <div>
+          <p>Sent to: {invoice?.clientEmail}</p>
+        </div>
       </div>
 
       <ViewInvoiceItems

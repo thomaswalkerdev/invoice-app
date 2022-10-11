@@ -7,21 +7,23 @@
   border: none;
   font-family: "Spartan";
   font-size: 18px;
+  margin: 5px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &--small {
-    height: 36px;
     min-width: 80px;
     font-weight: 300;
   }
 
   &--medium {
-    height: 48px;
     min-width: 100px;
     font-weight: 500;
   }
 
   &--large {
-    height: 64px;
     min-width: 120px;
     font-weight: 700;
   }
@@ -37,17 +39,26 @@
   }
 
   &__delete {
-    &--dark {
+    background-color: $colour9;
+    &:hover {
+      background-color: $colour10;
     }
   }
 
   &__icon {
-    &--dark {
+    background-color: $colour1;
+
+    &:hover {
+      background-color: $colour2;
     }
   }
 
   &__primary-action {
     background-color: $colour1;
+
+    &:hover {
+      background-color: $colour2;
+    }
   }
 
   &__secondary-action {
@@ -57,4 +68,17 @@
       color: white;
     }
   }
+}
+
+.btn__icon-wrapper {
+  width: 30px;
+  height: 30px;
+  margin: 5px 10px 5px 5px;
+  background-color: white;
+  border-radius: 25px;
+  display: inline-block;
+  color: $colour1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

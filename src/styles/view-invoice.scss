@@ -1,0 +1,55 @@
+@import "./globals.scss";
+
+.view-invoice__wrapper {
+  margin-top: 100px;
+}
+
+.view-invoice__header {
+  width: 800px;
+  height: 100px;
+  background-color: $colour4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  border-radius: 10px;
+}
+
+.view-invoice__status {
+}
+
+.view-invoice__buttons {
+  display: flex;
+}
+
+.view-invoice__body {
+  width: 800px;
+  background-color: $colour4;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 25px;
+}
+
+.view-invoice__back {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+}
+
+.view-invoice__items {
+  width: 700px;
+  padding: 20px;
+  background-color: $colour3;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.view-invoice__row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

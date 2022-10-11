@@ -12,8 +12,10 @@ function InvoiceDetail() {
     state.find((invoice) => invoice.id === invoiceId) ?? new Invoice();
 
   return (
-    <div>
-      <Link to="/">{"<"} Go back</Link>
+    <div className="view-invoice__wrapper">
+      <div className="view-invoice__back">
+        <Link to="/">{"<"} Go back</Link>
+      </div>
       <ViewInvoiceHeader invoice={invoice} />
       <ViewInvoiceDetail invoice={invoice} />
     </div>
