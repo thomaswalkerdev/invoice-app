@@ -13,7 +13,7 @@ export const Button = (props: IButtonProps) => {
       {props.buttonStyle === ButtonStyleEnum.Icon ? (
         <CircleIcon />
       ) : props.buttonStyle === ButtonStyleEnum.Add ? (
-        <SmallIcon />
+        <>+</>
       ) : null}
       {props?.children}
     </button>

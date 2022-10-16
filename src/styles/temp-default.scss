@@ -2,13 +2,12 @@
 
 .App {
   text-align: center;
-  width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: $colour12;
   box-sizing: border-box;
+  padding: 75px 0px;
 }
 
 .App-logo {

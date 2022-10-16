@@ -4,6 +4,9 @@ import DeleteIcon from "../icons/delete-icon";
 import NumberField from "./number-field";
 import TextField from "./text-field";
 import "../../styles/item-list.scss";
+import Button from "../buttons/button";
+import ButtonStyleEnum from "../../enums/button-style.enum";
+import ButtonSizeEnum from "../../enums/button-size.enum";
 
 function ItemList(props: IItemListProps) {
   let initialItems = props.items ?? [];
@@ -17,8 +20,8 @@ function ItemList(props: IItemListProps) {
   }
 
   return (
-    <div>
-      <table>
+    <>
+      <table className="form__item-list">
         <thead>
           <tr>
             <th>Item Name</th>
@@ -31,7 +34,7 @@ function ItemList(props: IItemListProps) {
         <tbody>
           {items?.map((item, i) => {
             return (
-              <tr key={i}>
+              <tr key={i} className="form__item-group">
                 <td>
                   <TextField
                     defaultValue={item?.name}
@@ -50,7 +53,9 @@ function ItemList(props: IItemListProps) {
                     onChange={(value) =>
                       updateItems(
                         items.map((item, index) =>
-                          i === index ? { ...item, quantity: value } : item
+                          i === index
+                            ? { ...item, quantity: parseInt(value) }
+                            : item
                         )
                       )
                     }
@@ -62,7 +67,9 @@ function ItemList(props: IItemListProps) {
                     onChange={(value) =>
                       updateItems(
                         items.map((item, index) =>
-                          i === index ? { ...item, price: value } : item
+                          i === index
+                            ? { ...item, price: parseInt(value) }
+                            : item
                         )
                       )
                     }
@@ -74,7 +81,9 @@ function ItemList(props: IItemListProps) {
                     onChange={(value) =>
                       updateItems(
                         items.map((item, index) =>
-                          i === index ? { ...item, total: value } : item
+                          i === index
+                            ? { ...item, total: parseInt(value) }
+                            : item
                         )
                       )
                     }
@@ -90,10 +99,16 @@ function ItemList(props: IItemListProps) {
           })}
         </tbody>
       </table>
-      <button onClick={() => updateItems([...items, new Item()])}>
-        Add new item
-      </button>
-    </div>
+      <div className="item-list__add-item">
+        <Button
+          buttonStyle={ButtonStyleEnum.Add}
+          buttonSize={ButtonSizeEnum.Small}
+          onClick={() => updateItems([...items, new Item()])}
+        >
+          Add new item
+        </Button>
+      </div>
+    </>
   );
 }
 

@@ -1,7 +1,6 @@
 @import "./globals.scss";
 
 .view-invoice__wrapper {
-  margin-top: 100px;
 }
 
 .view-invoice__header {
@@ -44,7 +43,6 @@
 
 .view-invoice__items {
   width: 700px;
-  padding: 20px;
   background-color: $colour3;
   border-radius: 20px;
   margin-top: 20px;
@@ -52,11 +50,81 @@
 
 .view-invoice__row {
   width: 100%;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
+  margin: 0px 30px;
 }
 
 .view-invoice__go-back {
   display: flex;
+  align-items: center;
   width: 150px;
+}
+
+.view-invoice__section {
+  display: flex;
+  padding: 20px 50px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.view-invoice__entry {
+  text-align: left;
+}
+
+.view-invoice__label {
+  font-size: 14px;
+  text-align: left;
+  margin: 10px;
+}
+
+.view-invoice__value {
+  font-size: 18px;
+  margin: 10px;
+}
+
+.view-invoice__value--small {
+  font-size: 14px;
+  margin: 3px;
+}
+
+.view-invoice__value--bold {
+  font-weight: 500;
+}
+
+.view-invoice__entry--right {
+  text-align: right;
+}
+
+.view-invoice__items-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25% 25%;
+  text-align: left;
+  margin: 10px 0px;
+}
+
+.view-invoice__items-table {
+  width: 100%;
+  padding: 25px;
+}
+
+.view-invoice__amount-wrapper {
+  text-align: right;
+  padding: 25px;
+  background-color: black;
+  color: white;
+  height: 50px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.view-invoice__amount {
+  width: 100%;
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
 }

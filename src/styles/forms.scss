@@ -19,8 +19,21 @@
   width: 100%;
 }
 
+.form__field-wrapper--reduced {
+  margin: 0px 5px;
+  width: auto;
+}
+
 .form__group {
   display: flex;
   justify-content: space-between;
-  margin: 20px 50px;
+  margin: 20px 75px;
+}
+
+.form__item-group {
+  margin: 20px 75px;
+}
+
+.form__item-list {
+  margin: 20px 75px;
 }

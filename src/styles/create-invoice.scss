@@ -1,14 +1,11 @@
 @import "./globals.scss";
 .create-invoice {
   margin-left: 100px;
-  width: 100%;
-  height: calc(100% - 25px);
   background-color: $colour12;
-  overflow-y: scroll;
 }
 
 .create-invoice__button-wrapper {
-  width: 100%;
+  margin: 25px 75px;
   display: flex;
   justify-content: space-between;
 }

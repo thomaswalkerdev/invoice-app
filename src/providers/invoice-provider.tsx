@@ -24,7 +24,6 @@ function invoiceReducer(state: State, action: Action) {
       return [...state, action.payload];
     }
     case InvoiceActions.UpdateInvoice: {
-      console.log("action", action.payload);
       return UpdateObjInArr(state, action.payload, "id");
     }
     case InvoiceActions.DeleteInvoice: {

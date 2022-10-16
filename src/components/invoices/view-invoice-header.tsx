@@ -7,9 +7,12 @@ import Button from "../buttons/button";
 import SideContainer from "../sidebar/side-container";
 import "../../styles/view-invoice.scss";
 import InvoiceStatus from "./invoice-status";
+import { useInvoice } from "../../providers/invoice-provider";
+import { InvoiceActions } from "../../actions/invoice.actions";
 
 function ViewInvoiceHeader(props: IViewInvoiceHeaderProps) {
   const [editInvoice, toggleEditInvoice] = useState(false);
+  const { state, dispatch } = useInvoice();
 
   return (
     <>
@@ -36,8 +39,15 @@ function ViewInvoiceHeader(props: IViewInvoiceHeaderProps) {
             Delete
           </Button>
           <Button
+            // disabled={props?.invoice?.status == "paid"}
             buttonSize={ButtonSizeEnum.Medium}
             buttonStyle={ButtonStyleEnum.PrimaryAction}
+            onClick={() =>
+              dispatch({
+                type: InvoiceActions.UpdateInvoice,
+                payload: { ...props.invoice, status: "paid" },
+              })
+            }
           >
             Mark as Paid
           </Button>

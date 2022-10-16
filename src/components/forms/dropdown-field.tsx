@@ -1,10 +1,13 @@
 function DropdownField(props: IDropdownFieldProps) {
+  const label = props?.label ? <label>{props?.label}</label> : null;
+
   return (
-    <div>
-      <label>{props?.label}</label>
+    <div className="form__field-wrapper">
+      <div>{label}</div>
       <select
         onChange={(event) => props.onChange(event.target.value)}
         value={props?.defaultValue}
+        className="form__text-input"
       >
         {props?.options.map((option, index) => {
           return (

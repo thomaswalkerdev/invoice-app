@@ -20,5 +20,6 @@ export default TextField;
 export interface ITextFieldProps {
   defaultValue?: string;
   label?: string;
+  stretched?: boolean;
   onChange: (value: string) => void;
 }

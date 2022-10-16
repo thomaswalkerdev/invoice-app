@@ -1,11 +1,7 @@
 const RightArrowIcon = (props: IRightArrowIconProps) => {
   return (
-    <svg width={20} height={20}>
-      <svg
-        width={props?.width ?? 100}
-        height={props?.height ?? 100}
-        xmlns="http://www.w3.org/2000/svg"
-      >
+    <svg width={10} height={10}>
+      <svg className={style} xmlns="http://www.w3.org/2000/svg">
         <path
           d="M1 1l4 4-4 4"
           stroke="#7C5DFA"
@@ -25,3 +21,7 @@ export interface IRightArrowIconProps {
   height?: number;
   onClick?: () => any;
 }
+
+const style = `
+    transform: scale(2, 2);
+`;

@@ -5,8 +5,8 @@ import "../../styles/forms.scss";
 function ViewInvoiceItems(props: IViewInvoiceItemsProps) {
   return (
     <div className="view-invoice__items">
-      <table>
-        <tr>
+      <table className="view-invoice__items-table">
+        <tr className="view-invoice__items-row">
           <th>Item Name</th>
           <th>Quantity</th>
           <th>Price</th>
@@ -14,7 +14,7 @@ function ViewInvoiceItems(props: IViewInvoiceItemsProps) {
         </tr>
         {props?.items.map((item, index) => {
           return (
-            <tr className="form__group">
+            <tr key={index} className="view-invoice__items-row">
               <td>{item?.name}</td>
               <td>{item?.quantity}</td>
               <td>{item?.price}</td>
@@ -23,7 +23,12 @@ function ViewInvoiceItems(props: IViewInvoiceItemsProps) {
           );
         })}
       </table>
-      <div>Amount Due: {props?.total ?? 0}</div>
+      <div className="view-invoice__amount-wrapper">
+        <div className="view-invoice__amount">
+          <span>Amount Due:</span>
+          <span>{props?.total ?? 0}</span>
+        </div>
+      </div>
     </div>
   );
 }
