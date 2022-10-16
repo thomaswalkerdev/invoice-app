@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Item } from "../../models/item.model";
+import DeleteIcon from "../icons/delete-icon";
 import NumberField from "./number-field";
 import TextField from "./text-field";
+import "../../styles/item-list.scss";
 
 function ItemList(props: IItemListProps) {
   let initialItems = props.items ?? [];
@@ -79,7 +81,9 @@ function ItemList(props: IItemListProps) {
                   />
                 </td>
                 <td>
-                  <button onClick={() => removeItemfromItems(i)}>Delete</button>
+                  <div className="item-list__delete">
+                    <DeleteIcon onClick={() => removeItemfromItems(i)} />
+                  </div>
                 </td>
               </tr>
             );

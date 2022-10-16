@@ -16,6 +16,8 @@
 }
 
 .view-invoice__status {
+  display: flex;
+  align-items: center;
 }
 
 .view-invoice__buttons {
@@ -52,4 +54,9 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.view-invoice__go-back {
+  display: flex;
+  width: 150px;
 }

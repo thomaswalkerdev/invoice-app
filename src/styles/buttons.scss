@@ -34,7 +34,14 @@
   }
 
   &__edit {
+    color: white;
+    background-color: $colour3;
     &--dark {
+    }
+
+    &:hover {
+      color: $colour1;
+      background-color: $colour11;
     }
   }
 
@@ -67,6 +74,11 @@
     &--dark {
       color: white;
     }
+  }
+
+  &__discard {
+    background-color: $colour11;
+    color: $colour1;
   }
 }
 

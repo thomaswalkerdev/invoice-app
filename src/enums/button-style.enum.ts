@@ -5,6 +5,7 @@ export enum ButtonStyleEnum {
   Icon = "btn__icon",
   PrimaryAction = "btn__primary-action",
   SecondaryAction = "btn__secondary-action",
+  Discard = "btn__discard",
 }
 
 export default ButtonStyleEnum;

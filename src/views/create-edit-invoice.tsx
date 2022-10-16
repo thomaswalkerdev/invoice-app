@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { InvoiceActions } from "../actions/invoice.actions";
+import Button from "../components/buttons/button";
 import DatePickerField from "../components/forms/date-picker-field";
 import DropdownField from "../components/forms/dropdown-field";
 import ItemList from "../components/forms/item-list";
 import TextField from "../components/forms/text-field";
+import ButtonSizeEnum from "../enums/button-size.enum";
+import ButtonStyleEnum from "../enums/button-style.enum";
 import { Invoice } from "../models/invoice.model";
 import { useInvoice } from "../providers/invoice-provider";
 import "../styles/create-invoice.scss";
@@ -42,10 +45,18 @@ function CreateEditInvoice(props: ICreateEditInvoiceProps) {
   }, [formValues]);
 
   const submitOptions = props.invoiceId ? (
-    <div>
-      <button onClick={props?.close}>Cancel</button>
-      <button
-        disabled={!validForm}
+    <div className="create-invoice__button-wrapper">
+      <Button
+        buttonStyle={ButtonStyleEnum.Discard}
+        buttonSize={ButtonSizeEnum.Medium}
+        onClick={props?.close}
+      >
+        Cancel
+      </Button>
+      <Button
+        buttonStyle={ButtonStyleEnum.PrimaryAction}
+        buttonSize={ButtonSizeEnum.Medium}
+        // disabled={!validForm}
         onClick={() => {
           updateForm({
             ...formValues,
@@ -61,38 +72,56 @@ function CreateEditInvoice(props: ICreateEditInvoiceProps) {
         }}
       >
         Save Changes
-      </button>
+      </Button>
     </div>
   ) : (
-    <div>
-      <button onClick={props?.close}>Cancel</button>
-      <button
-        onClick={() => {
-          updateForm({ ...formValues, status: "draft" });
-          dispatch({ type: InvoiceActions.CreateInvoice, payload: formValues });
-          props.close();
-        }}
+    <div className="create-invoice__button-wrapper">
+      <Button
+        buttonStyle={ButtonStyleEnum.Discard}
+        buttonSize={ButtonSizeEnum.Medium}
+        onClick={props?.close}
       >
-        Save as Draft
-      </button>
-      <button
-        disabled={!validForm}
-        onClick={() => {
-          updateForm({
-            ...formValues,
-            status: "pending",
-            createdAt: new Date().toString(),
-            paymentDue: addDays(
-              formValues.createdAt ?? new Date().toString(),
-              formValues.paymentTerms ?? 0
-            ),
-          });
-          dispatch({ type: InvoiceActions.CreateInvoice, payload: formValues });
-          props.close();
-        }}
-      >
-        Save & Send
-      </button>
+        Cancel
+      </Button>
+      <div className="create-invoice__button-wrapper--right">
+        <Button
+          buttonStyle={ButtonStyleEnum.SecondaryAction}
+          buttonSize={ButtonSizeEnum.Medium}
+          onClick={() => {
+            updateForm({ ...formValues, status: "draft" });
+            dispatch({
+              type: InvoiceActions.CreateInvoice,
+              payload: formValues,
+            });
+            props.close();
+          }}
+        >
+          Save as Draft
+        </Button>
+        <Button
+          buttonStyle={ButtonStyleEnum.PrimaryAction}
+          buttonSize={ButtonSizeEnum.Medium}
+          // disabled={!validForm}
+          onClick={() => {
+            updateForm({
+              ...formValues,
+              status: "pending",
+              createdAt: new Date().toString(),
+              paymentDue: addDays(
+                formValues.createdAt ?? new Date().toString(),
+                formValues.paymentTerms ?? 0
+              ),
+            });
+            dispatch({
+              type: InvoiceActions.CreateInvoice,
+              payload: formValues,
+            });
+            props.close();
+          }}
+        >
+          Save & Send
+        </Button>
+      </div>
     </div>
   );
 

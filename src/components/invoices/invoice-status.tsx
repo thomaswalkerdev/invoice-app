@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import RightArrowIcon from "../icons/right-arrow-icon";
 
 export const InvoiceStatus = (props: IInvoiceStatusProps) => {
   return (
@@ -7,11 +8,8 @@ export const InvoiceStatus = (props: IInvoiceStatusProps) => {
       <span className={`invoice__status invoice__status--${props?.status}`}>
         {props?.status}
       </span>
-      <Link
-        to={props.invoiceId ?? ""}
-        // onClick={() => toggleEditInvoice(!editInvoice)}
-      >
-        {">"}
+      <Link to={props.invoiceId ?? ""}>
+        <RightArrowIcon />
       </Link>
     </div>
   );
