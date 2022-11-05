@@ -9,6 +9,7 @@ export const Button = (props: IButtonProps) => {
       onClick={props?.onClick}
       className={`btn ${props.buttonStyle} ${props.buttonSize}`}
       type={props?.type}
+      disabled={props?.disabled}
     >
       {props.buttonStyle === ButtonStyleEnum.Icon ? (
         <CircleIcon />
@@ -31,6 +32,7 @@ const SmallIcon = () => {
 export interface IButtonProps {
   children?: any;
   type?: any;
+  disabled?: boolean;
   onClick?: () => void;
   buttonStyle: ButtonStyleEnum;
   buttonSize: ButtonSizeEnum;

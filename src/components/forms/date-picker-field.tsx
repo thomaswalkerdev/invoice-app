@@ -1,7 +1,7 @@
 function DatePickerField(props: IDatePickerFieldProps) {
   const label = props?.label ? <label>{props?.label}</label> : null;
   return (
-    <div className="form__field-wrapper">
+    <>
       <div>{label}</div>
       <input
         className="form__text-input"
@@ -9,7 +9,7 @@ function DatePickerField(props: IDatePickerFieldProps) {
         value={props?.defaultValue}
         readOnly
       />
-    </div>
+    </>
   );
 }
 

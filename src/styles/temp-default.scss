@@ -5,9 +5,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: $colour12;
   box-sizing: border-box;
   padding: 75px 0px;
+  min-height: 100vh;
+}
+
+.App--light {
+  background-color: $colour11;
+}
+
+.App--dark {
+  background-color: $colour12;
 }
 
 .App-logo {

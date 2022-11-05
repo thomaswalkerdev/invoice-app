@@ -11,9 +11,6 @@
   align-items: center;
 }
 
-.invoices__list-wrapper {
-}
-
 .invoices__list-entry {
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
@@ -22,6 +19,10 @@
   padding: 20px 10px;
   background-color: $colour4;
   border-radius: 25px;
+}
+
+.invoices__list-entry--light {
+  background-color: $colour11;
 }
 
 .invoices__list-entry > span {
@@ -50,7 +51,4 @@
   display: inline-block;
   padding: 10px;
   border-radius: 10px;
-}
-
-.invoice__column {
 }

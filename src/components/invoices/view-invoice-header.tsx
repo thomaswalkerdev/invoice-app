@@ -39,7 +39,7 @@ function ViewInvoiceHeader(props: IViewInvoiceHeaderProps) {
             Delete
           </Button>
           <Button
-            // disabled={props?.invoice?.status == "paid"}
+            disabled={props?.invoice?.status === "paid"}
             buttonSize={ButtonSizeEnum.Medium}
             buttonStyle={ButtonStyleEnum.PrimaryAction}
             onClick={() =>

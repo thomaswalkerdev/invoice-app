@@ -2,7 +2,7 @@ function DropdownField(props: IDropdownFieldProps) {
   const label = props?.label ? <label>{props?.label}</label> : null;
 
   return (
-    <div className="form__field-wrapper">
+    <>
       <div>{label}</div>
       <select
         onChange={(event) => props.onChange(event.target.value)}
@@ -17,20 +17,20 @@ function DropdownField(props: IDropdownFieldProps) {
           );
         })}
       </select>
-    </div>
+    </>
   );
 }
 
 export default DropdownField;
 
 export interface IDropdownFieldProps {
-  label: string;
-  options: any[];
+  label?: string;
+  options: DropdownItem[];
   defaultValue?: any;
   onChange: (value: any) => void;
 }
 
 export class DropdownItem {
   label: string;
-  value: string;
+  value?: string | number;
 }

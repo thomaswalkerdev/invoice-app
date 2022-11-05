@@ -37,6 +37,13 @@
   border-radius: 50px;
 }
 
+.sidebar__profile-picture-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 .sidebar__theme-icon-wrapper {
   height: 100px;
   width: 100px;

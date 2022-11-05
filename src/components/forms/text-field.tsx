@@ -3,7 +3,7 @@ import "../../styles/forms.scss";
 function TextField(props: ITextFieldProps) {
   const label = props?.label ? <label>{props?.label}</label> : null;
   return (
-    <div className="form__field-wrapper">
+    <>
       <div>{label}</div>
       <input
         className="form__text-input"
@@ -11,7 +11,7 @@ function TextField(props: ITextFieldProps) {
         value={props?.defaultValue}
         onChange={(e) => props?.onChange(e.target.value)}
       />
-    </div>
+    </>
   );
 }
 

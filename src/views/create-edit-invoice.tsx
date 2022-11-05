@@ -10,16 +10,24 @@ import ButtonStyleEnum from "../enums/button-style.enum";
 import { Invoice } from "../models/invoice.model";
 import { useInvoice } from "../providers/invoice-provider";
 import "../styles/create-invoice.scss";
-import { checkAllPropertiesAreNotNull } from "../utils/object.utils";
+import { validateForm } from "../services/form-validation.service";
 
 function CreateEditInvoice(props: ICreateEditInvoiceProps) {
   const { state, dispatch } = useInvoice();
 
+  let newInvoice = new Invoice();
+  newInvoice.id = "s";
+  newInvoice.createdAt = new Date().toDateString();
+  newInvoice.status = "draft";
+  newInvoice.items = [];
+  newInvoice.total = 0;
+  newInvoice.paymentDue = new Date().toDateString();
+
   let invoice = props?.invoiceId
     ? state.find((invoice) => invoice.id === props?.invoiceId)
-    : new Invoice();
+    : newInvoice;
 
-  const [formValues, updateForm] = useState(invoice ?? new Invoice());
+  const [formValues, updateForm] = useState(invoice as Invoice);
   const [validForm, updateFormValid] = useState(false);
   const paymentTermOptions = [
     { label: "Next Day", value: 1 },
@@ -36,7 +44,7 @@ function CreateEditInvoice(props: ICreateEditInvoiceProps) {
   useEffect(() => {
     function validateFormFields() {
       updateFormValid(true);
-      checkAllPropertiesAreNotNull(formValues, () => {
+      validateForm(formValues, () => {
         updateFormValid(false);
       });
     }
@@ -56,7 +64,7 @@ function CreateEditInvoice(props: ICreateEditInvoiceProps) {
       <Button
         buttonStyle={ButtonStyleEnum.PrimaryAction}
         buttonSize={ButtonSizeEnum.Medium}
-        // disabled={!validForm}
+        disabled={!validForm}
         onClick={() => {
           updateForm({
             ...formValues,
@@ -89,6 +97,7 @@ function CreateEditInvoice(props: ICreateEditInvoiceProps) {
           buttonSize={ButtonSizeEnum.Medium}
           onClick={() => {
             updateForm({ ...formValues, status: "draft" });
+            console.log("form", formValues);
             dispatch({
               type: InvoiceActions.CreateInvoice,
               payload: formValues,
@@ -101,7 +110,7 @@ function CreateEditInvoice(props: ICreateEditInvoiceProps) {
         <Button
           buttonStyle={ButtonStyleEnum.PrimaryAction}
           buttonSize={ButtonSizeEnum.Medium}
-          // disabled={!validForm}
+          disabled={!validForm}
           onClick={() => {
             updateForm({
               ...formValues,
@@ -130,162 +139,190 @@ function CreateEditInvoice(props: ICreateEditInvoiceProps) {
       {props.invoiceId ? <h1>Edit Invoice</h1> : <h1>Create Invoice</h1>}
       <h4>Bill From</h4>
       <div className="form__group">
-        <TextField
-          label="Street"
-          defaultValue={formValues?.senderAddress?.street}
-          onChange={(value) =>
-            updateForm({
-              ...formValues,
-              senderAddress: { ...formValues.senderAddress, street: value },
-            })
-          }
-        />
+        <div className="form__field-wrapper">
+          <TextField
+            label="Street"
+            defaultValue={formValues?.senderAddress?.street}
+            onChange={(value) =>
+              updateForm({
+                ...formValues,
+                senderAddress: { ...formValues.senderAddress, street: value },
+              })
+            }
+          />
+        </div>
       </div>
       <div className="form__group">
-        <TextField
-          label="City"
-          defaultValue={formValues?.senderAddress?.city}
-          onChange={(value) =>
-            updateForm({
-              ...formValues,
-              senderAddress: { ...formValues.senderAddress, city: value },
-            })
-          }
-        />
-        <TextField
-          label="Post Code"
-          defaultValue={formValues?.senderAddress?.postCode}
-          onChange={(value) =>
-            updateForm({
-              ...formValues,
-              senderAddress: { ...formValues.senderAddress, postCode: value },
-            })
-          }
-        />
-        <TextField
-          label="Country"
-          defaultValue={formValues?.senderAddress?.country}
-          onChange={(value) =>
-            updateForm({
-              ...formValues,
-              senderAddress: { ...formValues.senderAddress, country: value },
-            })
-          }
-        />
+        <div className="form__field-wrapper">
+          <TextField
+            label="City"
+            defaultValue={formValues?.senderAddress?.city}
+            onChange={(value) =>
+              updateForm({
+                ...formValues,
+                senderAddress: { ...formValues.senderAddress, city: value },
+              })
+            }
+          />
+        </div>
+        <div className="form__field-wrapper">
+          <TextField
+            label="Post Code"
+            defaultValue={formValues?.senderAddress?.postCode}
+            onChange={(value) =>
+              updateForm({
+                ...formValues,
+                senderAddress: { ...formValues.senderAddress, postCode: value },
+              })
+            }
+          />
+        </div>
+        <div className="form__field-wrapper">
+          <TextField
+            label="Country"
+            defaultValue={formValues?.senderAddress?.country}
+            onChange={(value) =>
+              updateForm({
+                ...formValues,
+                senderAddress: { ...formValues.senderAddress, country: value },
+              })
+            }
+          />
+        </div>
       </div>
       <h4>Bill To</h4>
       <div className="form__group">
-        <TextField
-          label="Client's Name"
-          defaultValue={formValues?.clientName}
-          onChange={(value) =>
-            updateForm({
-              ...formValues,
-              clientName: value,
-            })
-          }
-        />
+        <div className="form__field-wrapper">
+          <TextField
+            label="Client's Name"
+            defaultValue={formValues?.clientName}
+            onChange={(value) =>
+              updateForm({
+                ...formValues,
+                clientName: value,
+              })
+            }
+          />
+        </div>
       </div>
       <div className="form__group">
-        <TextField
-          label="Client's Email"
-          defaultValue={formValues?.clientEmail}
-          onChange={(value) =>
-            updateForm({
-              ...formValues,
-              clientEmail: value,
-            })
-          }
-        />
+        <div className="form__field-wrapper">
+          <TextField
+            label="Client's Email"
+            defaultValue={formValues?.clientEmail}
+            onChange={(value) =>
+              updateForm({
+                ...formValues,
+                clientEmail: value,
+              })
+            }
+          />
+        </div>
       </div>
       <div className="form__group">
-        <TextField
-          label="Street Address"
-          defaultValue={formValues?.clientAddress?.street}
-          onChange={(value) =>
-            updateForm({
-              ...formValues,
-              clientAddress: {
-                ...formValues.clientAddress,
-                street: value,
-              },
-            })
-          }
-        />
+        <div className="form__field-wrapper">
+          <TextField
+            label="Street Address"
+            defaultValue={formValues?.clientAddress?.street}
+            onChange={(value) =>
+              updateForm({
+                ...formValues,
+                clientAddress: {
+                  ...formValues.clientAddress,
+                  street: value,
+                },
+              })
+            }
+          />
+        </div>
       </div>
       <div className="form__group">
-        <TextField
-          label="City"
-          defaultValue={formValues?.clientAddress?.city}
-          onChange={(value) =>
-            updateForm({
-              ...formValues,
-              clientAddress: {
-                ...formValues.clientAddress,
-                city: value,
-              },
-            })
-          }
-        />
-        <TextField
-          label="Post Code"
-          defaultValue={formValues?.clientAddress?.postCode}
-          onChange={(value) =>
-            updateForm({
-              ...formValues,
-              clientAddress: {
-                ...formValues.clientAddress,
-                postCode: value,
-              },
-            })
-          }
-        />
-        <TextField
-          label="Country"
-          defaultValue={formValues?.clientAddress?.country}
-          onChange={(value) =>
-            updateForm({
-              ...formValues,
-              clientAddress: {
-                ...formValues.clientAddress,
-                country: value,
-              },
-            })
-          }
-        />
+        <div className="form__field-wrapper">
+          <TextField
+            label="City"
+            defaultValue={formValues?.clientAddress?.city}
+            onChange={(value) =>
+              updateForm({
+                ...formValues,
+                clientAddress: {
+                  ...formValues.clientAddress,
+                  city: value,
+                },
+              })
+            }
+          />
+        </div>
+        <div className="form__field-wrapper">
+          <TextField
+            label="Post Code"
+            defaultValue={formValues?.clientAddress?.postCode}
+            onChange={(value) =>
+              updateForm({
+                ...formValues,
+                clientAddress: {
+                  ...formValues.clientAddress,
+                  postCode: value,
+                },
+              })
+            }
+          />
+        </div>
+        <div className="form__field-wrapper">
+          <TextField
+            label="Country"
+            defaultValue={formValues?.clientAddress?.country}
+            onChange={(value) =>
+              updateForm({
+                ...formValues,
+                clientAddress: {
+                  ...formValues.clientAddress,
+                  country: value,
+                },
+              })
+            }
+          />
+        </div>
       </div>
       <div className="form__group">
-        <DatePickerField
-          label="Invoice Date"
-          defaultValue={formValues?.createdAt ?? new Date().toString()}
-        />
-        <DropdownField
-          label="Payment Terms"
-          options={paymentTermOptions}
-          defaultValue={formValues?.paymentTerms}
-          onChange={(value) =>
-            updateForm({
-              ...formValues,
-              paymentTerms: value,
-            })
-          }
-        ></DropdownField>
+        <div className="form__field-wrapper">
+          <DatePickerField
+            label="Invoice Date"
+            defaultValue={formValues?.createdAt ?? new Date().toString()}
+          />
+        </div>
+        <div className="form__field-wrapper">
+          <DropdownField
+            label="Payment Terms"
+            options={paymentTermOptions}
+            defaultValue={formValues?.paymentTerms}
+            onChange={(value) =>
+              updateForm({
+                ...formValues,
+                paymentTerms: value,
+              })
+            }
+          ></DropdownField>
+        </div>
       </div>
       <div className="form__group">
-        <TextField
-          label="Product Description"
-          defaultValue={formValues?.description}
-          onChange={(value) =>
-            updateForm({
-              ...formValues,
-              description: value,
-            })
-          }
-        />
+        <div className="form__field-wrapper">
+          <TextField
+            label="Product Description"
+            defaultValue={formValues?.description}
+            onChange={(value) =>
+              updateForm({
+                ...formValues,
+                description: value,
+              })
+            }
+          />
+        </div>
       </div>
       <ItemList
         items={formValues?.items}
-        onItemsUpdated={(items) => updateForm({ ...formValues, items: items })}
+        onItemsUpdated={(items) => {
+          updateForm({ ...formValues, items: items });
+        }}
       />
       {submitOptions}
     </div>

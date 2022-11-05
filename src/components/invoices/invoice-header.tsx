@@ -6,8 +6,9 @@ import "../../styles/invoices.scss";
 import SideContainer from "../sidebar/side-container";
 import { useInvoice } from "../../providers/invoice-provider";
 import CreateEditInvoice from "../../views/create-edit-invoice";
+import DropdownField from "../forms/dropdown-field";
 
-export function InvoiceHeader() {
+export function InvoiceHeader(props: IInvoiceHeaderProps) {
   const [createInvoice, toggleCreateInvoice] = useState(false);
   const invoiceState = useInvoice();
   return (
@@ -18,7 +19,19 @@ export function InvoiceHeader() {
           <h4>There are {invoiceState?.state?.length} Total Invoices</h4>
         </div>
         <div className="invoices__actions-wrapper">
-          <div>Filter dropdown</div>
+          <div>
+            <DropdownField
+              options={[
+                { label: "All", value: "" },
+                { label: "Draft", value: "draft" },
+                { label: "Paid", value: "paid" },
+                { label: "Pending", value: "pending" },
+              ]}
+              onChange={(value) => {
+                props.filterChanged(value);
+              }}
+            />
+          </div>
           <Button
             buttonSize={ButtonSizeEnum.Medium}
             buttonStyle={ButtonStyleEnum.Icon}
@@ -33,4 +46,8 @@ export function InvoiceHeader() {
       </SideContainer>
     </>
   );
+}
+
+export interface IInvoiceHeaderProps {
+  filterChanged: (event: string) => void;
 }

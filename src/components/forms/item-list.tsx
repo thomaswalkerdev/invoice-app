@@ -21,89 +21,98 @@ function ItemList(props: IItemListProps) {
 
   return (
     <>
-      <table className="form__item-list">
-        <thead>
-          <tr>
-            <th>Item Name</th>
-            <th>Qty.</th>
-            <th>Price</th>
-            <th>Total</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {items?.map((item, i) => {
-            return (
-              <tr key={i} className="form__item-group">
-                <td>
-                  <TextField
-                    defaultValue={item?.name}
-                    onChange={(value) =>
-                      updateItems(
-                        items.map((item, index) =>
-                          i === index ? { ...item, name: value } : item
-                        )
-                      )
-                    }
-                  />
-                </td>
-                <td>
-                  <NumberField
-                    defaultValue={item?.quantity}
-                    onChange={(value) =>
-                      updateItems(
-                        items.map((item, index) =>
-                          i === index
-                            ? { ...item, quantity: parseInt(value) }
-                            : item
-                        )
-                      )
-                    }
-                  />
-                </td>
-                <td>
-                  <NumberField
-                    defaultValue={item?.price}
-                    onChange={(value) =>
-                      updateItems(
-                        items.map((item, index) =>
-                          i === index
-                            ? { ...item, price: parseInt(value) }
-                            : item
-                        )
-                      )
-                    }
-                  />
-                </td>
-                <td>
-                  <NumberField
-                    defaultValue={item?.total}
-                    onChange={(value) =>
-                      updateItems(
-                        items.map((item, index) =>
-                          i === index
-                            ? { ...item, total: parseInt(value) }
-                            : item
-                        )
-                      )
-                    }
-                  />
-                </td>
-                <td>
-                  <div className="item-list__delete">
-                    <DeleteIcon onClick={() => removeItemfromItems(i)} />
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="form__group">
+        <table className="form__item-list">
+          <thead>
+            <tr>
+              <th className="form__item-cell">Item Name</th>
+              <th className="form__item-cell">Qty.</th>
+              <th className="form__item-cell">Price</th>
+              <th className="form__item-cell">Total</th>
+              <th className="form__item-cell"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {items?.map((item, i) => {
+              return (
+                <tr key={i} className="form__item-group">
+                  <td className="form__item-cell">
+                    <TextField
+                      defaultValue={item?.name}
+                      onChange={(value) => {
+                        updateItems(
+                          items.map((item, index) =>
+                            i === index ? { ...item, name: value } : item
+                          )
+                        );
+                        props.onItemsUpdated(items);
+                      }}
+                    />
+                  </td>
+                  <td className="form__item-cell">
+                    <NumberField
+                      defaultValue={item?.quantity}
+                      onChange={(value) => {
+                        updateItems(
+                          items.map((item, index) =>
+                            i === index
+                              ? { ...item, quantity: parseInt(value) }
+                              : item
+                          )
+                        );
+                        props.onItemsUpdated(items);
+                      }}
+                    />
+                  </td>
+                  <td className="form__item-cell">
+                    <NumberField
+                      defaultValue={item?.price}
+                      onChange={(value) => {
+                        updateItems(
+                          items.map((item, index) =>
+                            i === index
+                              ? { ...item, price: parseInt(value) }
+                              : item
+                          )
+                        );
+                        props.onItemsUpdated(items);
+                      }}
+                    />
+                  </td>
+                  <td className="form__item-cell">
+                    <NumberField
+                      defaultValue={item?.total}
+                      onChange={(value) => {
+                        updateItems(
+                          items.map((item, index) =>
+                            i === index
+                              ? { ...item, total: parseInt(value) }
+                              : item
+                          )
+                        );
+                        props.onItemsUpdated(items);
+                      }}
+                    />
+                  </td>
+                  <td className="form__item-cell">
+                    <div className="item-list__delete">
+                      <DeleteIcon onClick={() => removeItemfromItems(i)} />
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
       <div className="item-list__add-item">
         <Button
           buttonStyle={ButtonStyleEnum.Add}
           buttonSize={ButtonSizeEnum.Small}
-          onClick={() => updateItems([...items, new Item()])}
+          onClick={() => {
+            updateItems([...items, new Item()]);
+            props.onItemsUpdated(items);
+          }}
         >
           Add new item
         </Button>
@@ -116,5 +125,5 @@ export default ItemList;
 
 interface IItemListProps {
   items?: Item[];
-  onItemsUpdated?: (items: Item[]) => void;
+  onItemsUpdated: (items: Item[]) => void;
 }
