@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Theme } from "../../enums/theme.enum";
 import { Invoice } from "../../models/invoice.model";
+import { useTheme } from "../../providers/theme-provider";
 import CreateEditInvoice from "../../views/create-edit-invoice";
 import SideContainer from "../sidebar/side-container";
 import { InvoiceStatus } from "./invoice-status";
 export function InvoiceEntry(props: IInvoiceEntryProps) {
   const [editInvoice, toggleEditInvoice] = useState(false);
-
+  const { themeState } = useTheme();
   return (
-    <div className="invoices__list-entry">
+    <div
+      className={`${
+        themeState.theme === Theme.Dark
+          ? "invoices__list-entry--dark"
+          : "invoices__list-entry--light"
+      } invoices__list-entry`}
+    >
       <span>
         #<strong>{props?.invoice?.id}</strong>
       </span>

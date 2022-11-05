@@ -8,13 +8,15 @@ type State = { theme: Theme };
 type ThemeProviderProps = { children: React.ReactNode };
 
 const ThemeContext = React.createContext<
-  { state: State; dispatch: Dispatch } | undefined
+  { themeState: State; dispatch: Dispatch } | undefined
 >(undefined);
 
-function themeReducer(state: State, action: Action) {
+function themeReducer(themeState: State, action: Action) {
   switch (action.type) {
     case ThemeActions.ToggleTheme: {
-      return { theme: state.theme === Theme.Dark ? Theme.Light : Theme.Dark };
+      return {
+        theme: themeState.theme === Theme.Dark ? Theme.Light : Theme.Dark,
+      };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -23,10 +25,10 @@ function themeReducer(state: State, action: Action) {
 }
 
 function ThemeProvider({ children }: ThemeProviderProps) {
-  const [state, dispatch] = React.useReducer(themeReducer, {
+  const [themeState, dispatch] = React.useReducer(themeReducer, {
     theme: Theme.Dark,
   });
-  const value = { state, dispatch };
+  const value = { themeState, dispatch };
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );

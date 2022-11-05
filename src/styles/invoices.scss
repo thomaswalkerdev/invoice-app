@@ -17,12 +17,16 @@
   width: 800px;
   margin: 20px 0px;
   padding: 20px 10px;
-  background-color: $colour4;
   border-radius: 25px;
 }
 
 .invoices__list-entry--light {
   background-color: $colour11;
+}
+
+.invoices__list-entry--dark {
+  background-color: $colour4;
+  color: white;
 }
 
 .invoices__list-entry > span {

@@ -6,7 +6,7 @@ import { useTheme } from "../../providers/theme-provider";
 import { ThemeActions } from "../../actions/theme.actions";
 
 export function Sidebar() {
-  const { state, dispatch } = useTheme();
+  const { themeState, dispatch } = useTheme();
   return (
     <div className="sidebar__wrapper">
       <div className="sidebar">
@@ -15,9 +15,13 @@ export function Sidebar() {
         </div>
         <div>
           <div className="sidebar__theme-icon-wrapper">
-            <div onClick={() => dispatch({ type: ThemeActions.ToggleTheme })}>
+            <svg
+              onClick={() => {
+                dispatch({ type: ThemeActions.ToggleTheme });
+              }}
+            >
               <ThemeIcon height={50} width={50} />
-            </div>
+            </svg>
           </div>
           <div className="sidebar__break-line"></div>
           <div className="sidebar__profile-picture-wrapper">

@@ -13,6 +13,13 @@
   padding: 0px 20px;
   border-radius: 10px;
 }
+.view-invoice__header--light {
+  background-color: $colour11;
+}
+
+.view-invoice__header--dark {
+  background-color: $colour4;
+}
 
 .view-invoice__status {
   display: flex;

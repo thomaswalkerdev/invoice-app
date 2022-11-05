@@ -9,10 +9,12 @@ import "../../styles/view-invoice.scss";
 import InvoiceStatus from "./invoice-status";
 import { useInvoice } from "../../providers/invoice-provider";
 import { InvoiceActions } from "../../actions/invoice.actions";
+import { useTheme } from "../../providers/theme-provider";
 
 function ViewInvoiceHeader(props: IViewInvoiceHeaderProps) {
   const [editInvoice, toggleEditInvoice] = useState(false);
   const { state, dispatch } = useInvoice();
+  const { themeState } = useTheme();
 
   return (
     <>

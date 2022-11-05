@@ -4,24 +4,19 @@ import "./styles/base.scss";
 import InvoiceList from "./views/invoice-list";
 import { Sidebar } from "./components/sidebar/sidebar";
 import { InvoiceProvider } from "./providers/invoice-provider";
-import { ThemeProvider, useTheme } from "./providers/theme-provider";
+import { ThemeProvider } from "./providers/theme-provider";
 import ConfirmDeleteModal from "./components/modals/confirm-delete-modal";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import InvoiceDetail from "./views/invoice-detail";
-import { Theme } from "./enums/theme.enum";
+import { Layout } from "./components/layout/layout";
 
 function App() {
-  const { state, dispatch } = useTheme();
   return (
     <Router>
       <ThemeProvider>
         <InvoiceProvider>
           <Sidebar />
-          <div
-          // className={`${
-          //   state.theme === Theme.Dark ? "App--dark" : "App--light"
-          // } App`}
-          >
+          <Layout>
             <Routes>
               <Route
                 path="/"
@@ -29,7 +24,7 @@ function App() {
               />
               <Route path={`/:invoiceId`} element={<InvoiceDetail />} />
             </Routes>
-          </div>
+          </Layout>
         </InvoiceProvider>
       </ThemeProvider>
       {/* <ConfirmDeleteModal /> */}
